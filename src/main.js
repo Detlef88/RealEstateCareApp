@@ -1,6 +1,7 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router';
+import { createApp, ref } from 'vue'
+import App from '@/App.vue'
+import router from '@/router'
+import store from '@/store';
 
 import { IonicVue } from '@ionic/vue';
 
@@ -23,8 +24,23 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+const prefersDark = ref(window.matchMedia('(prefers-color-scheme: dark)'));
+
+const toggleDarkTheme = (shouldAdd) => {
+  document.body.classList.toggle('dark', shouldAdd);
+};
+
+const initializeDarkTheme = (isDark) => {
+  toggleDarkTheme(isDark);
+};
+
+initializeDarkTheme(prefersDark.value.matches);
+
+prefersDark.value.addEventListener('change', (mediaQuery) => initializeDarkTheme(mediaQuery.matches));
+
 const app = createApp(App)
   .use(IonicVue)
+  .use(store)
   .use(router);
   
 router.isReady().then(() => {
