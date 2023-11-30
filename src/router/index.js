@@ -76,7 +76,7 @@ const router = createRouter({
 // Route guards for authentication
 router.beforeEach((to, from, next) => {
   const isLoggedIn = store.state.user !== null; // Check if user is logged in
-  const isAuthenticated = store.state.authCode !== null; // Check if user is authenticated
+  const isAuthenticated = store.state.authUser === true; // Check if user is authenticated
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // Protected route - requires authentication first

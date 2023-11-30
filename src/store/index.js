@@ -13,6 +13,7 @@ export default createStore({
         reports: [],
         user: null,
         authCode: null,
+        authUser: false,
         successes: [],
         errors: [],
         logoutTimer: null,
@@ -27,9 +28,13 @@ export default createStore({
 
             state.user = user;
         },
+        SET_AUTH(state) {
+            state.authCode = null;
+            state.authUser = true;
+        },
         UNSET_USER(state) {
             state.user = null;
-            localStorage.removeItem('user'); // Clear user data on logout
+            state.authUser = false;
         },
         READ_REPORTS(state, payload) {
             state.reports = payload
@@ -108,6 +113,7 @@ export default createStore({
         },
         authenticateUser(context, userCode) {
             if (userCode === context.state.authCode) {
+                context.commit('SET_AUTH');
                 context.commit('ADD_SUCCESS', 'Authentication successful');
                 router.push('/home');
             } else {

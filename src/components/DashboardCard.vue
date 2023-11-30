@@ -57,13 +57,15 @@
   ion-item.card-item {
     position: relative;
     overflow: visible;
+    --background: transparent;
   }
   ion-item.card-item ion-badge {
     position: absolute;
     top: -10px;
     right: -10px;
-    inline-size: 20px;
-    block-size: 20px;
+    inline-size: 24px;
+    block-size: 24px;
+    line-height: 16px;
     border-radius: 50%;
   }
 </style>

@@ -10,6 +10,7 @@ export const toastMixin = {
         icon: checkmarkCircleOutline,
         duration: 2500,
         position: 'top',
+        positionAnchor: 'ionHeader',
         color: 'success',
       });
 
@@ -25,6 +26,7 @@ export const toastMixin = {
         icon: warningOutline,
         duration: 2500,
         position: 'top',
+        positionAnchor: 'ionHeader',
         color: 'danger',
       });
 

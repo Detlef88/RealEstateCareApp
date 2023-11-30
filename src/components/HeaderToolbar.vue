@@ -1,5 +1,5 @@
 <template>
-  <ion-header>
+  <ion-header id="ionHeader">
     <ion-toolbar>
       <router-link to="home" slot="start">
         <ion-icon id="brandLogo" src="/src/assets/brandLogo.svg" />
