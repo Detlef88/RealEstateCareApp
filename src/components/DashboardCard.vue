@@ -45,6 +45,9 @@
   justify-content: center;
   aspect-ratio: 1 / 1;
   }
+  ion-card:hover {
+    cursor: pointer;
+  }
   .ios ion-card {
     inline-size: calc(50% - 32px);
   }

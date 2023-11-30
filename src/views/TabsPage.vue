@@ -34,9 +34,32 @@
 </template>
 
 <script setup>
-import { IonPage, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/vue';
-import { homeOutline, clipboardOutline, fileTrayFullOutline, libraryOutline, cogOutline } from 'ionicons/icons';
-import HeaderToolbar from '@/components/HeaderToolbar.vue';
+  import { IonPage, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/vue';
+  import { homeOutline, clipboardOutline, fileTrayFullOutline, libraryOutline, cogOutline } from 'ionicons/icons';
+  import HeaderToolbar from '@/components/HeaderToolbar.vue';
+  import store from '@/store';
+  import { computed, watch } from 'vue';
+  import { toastMixin } from '@/mixins/toastMixin.js';
+
+  const { presentErrorToast, presentSuccessToast } = toastMixin.methods;
+
+  const error = computed(() => store.state.errors.length > 0);
+  const errorMessage = computed(() => store.state.errors);
+
+  const success = computed(() => store.state.successes.length > 0);
+  const successMessage = computed(() => store.state.successes);
+
+  watch(error, (hasError) => {
+    if (hasError) {
+        presentErrorToast(errorMessage.value);
+    }
+  });
+
+  watch(success, (hasSuccess) => {
+    if (hasSuccess) {
+        presentSuccessToast(successMessage.value);
+    }
+  });
 </script>
 
 <style scoped>

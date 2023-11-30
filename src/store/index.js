@@ -13,8 +13,8 @@ export default createStore({
         reports: [],
         user: null,
         authCode: null,
+        successes: [],
         errors: [],
-        success: [],
         logoutTimer: null,
     },
     mutations: {
@@ -48,8 +48,17 @@ export default createStore({
                 state.reports[index].status = status;
             }
         },
+        ADD_SUCCESS(state, payload) {
+            state.successes = [payload]
+        },
         ADD_ERROR(state, payload) {
-            state.errors = [...state.errors, payload]
+            state.errors = [payload]
+        },
+        CLEAR_SUCCESSES(state) {
+            state.successes = [];
+        },
+        CLEAR_ERRORS(state) {
+            state.errors = [];
         }
     },
     getters: {
@@ -63,6 +72,12 @@ export default createStore({
                 context.dispatch('logoutUser');
             }, 900000); // 15 minutes in milliseconds
         },
+        clearSuccesses(context) {
+            context.commit('CLEAR_SUCCESSES');
+        },
+        clearErrors(context) {
+            context.commit('CLEAR_ERRORS');
+        },
         loginUser(context, { email, password }) {
             return axios.get(usersJsonBin, { headers: usersJsonAccessKey })
             .then((response) => {
@@ -71,6 +86,7 @@ export default createStore({
 
                 if (foundUser) {
                     context.commit('SET_USER', foundUser);
+                    context.commit('ADD_SUCCESS', 'Login successful');
                     router.push('/authentication');
 
                     // Reset the logout timer function
@@ -92,10 +108,10 @@ export default createStore({
         },
         authenticateUser(context, userCode) {
             if (userCode === context.state.authCode) {
-                // Authenticated successfully, navigate to home
+                context.commit('ADD_SUCCESS', 'Authentication successful');
                 router.push('/home');
             } else {
-                // Incorrect authentication code, handle accordingly (e.g., show an error)
+                // Incorrect authentication code
                 context.commit('ADD_ERROR', 'Incorrect authentication code');
             }
         },
@@ -113,6 +129,7 @@ export default createStore({
         fetchReports(context) {
             return axios.get(reportsJsonBin, { headers: reportsJsonAccessKey })
             .then((response) => {
+                context.commit('ADD_SUCCESS', 'Reports loaded successfully');
                 context.commit('READ_REPORTS', response.data);
             })
             .catch((error) => {
@@ -129,9 +146,10 @@ export default createStore({
                     ...payload.reports[reportsKey],
                 };
     
+            context.commit('ADD_SUCCESS', 'Report saved successfully');
             context.commit('UPDATE_REPORT', context.state.reports[index]);
             } else {
-                context.commit('ADD_ERROR', ('Report not found for ID ' + reportId));
+                context.commit('ADD_ERROR', error);
                 localStorage.setItem('pendingReport', JSON.stringify(payload));
             }
         },
@@ -153,13 +171,13 @@ export default createStore({
         
                 return context.dispatch('updateReportsJsonBin', updatedReports)
                     .then(() => {
-                        console.log('JSONBin updated after completing report');
+                        context.commit('ADD_SUCCESS', 'Report completed and saved to server successfully');
                     })
                     .catch(error => {
                         context.commit('ADD_ERROR', error);
                     });
             } else {
-                context.commit('ADD_ERROR', ('Report not found for ID: ' + reportId));
+                context.commit('ADD_ERROR', error);
                 localStorage.setItem('pendingReport', JSON.stringify(payload));
             }
         }

@@ -76,6 +76,9 @@
   import { ref, computed } from 'vue';
   import ReportButton from '@/components/ReportButton.vue';
   import store from '@/store';
+  import { labelMixin } from '@/mixins/labelMixin.js';
+
+  const { getLabel } = labelMixin.methods;
 
   // 
   const closedReports = computed(() => store.getters.closedReports);
@@ -88,16 +91,6 @@
     accordionGroup.value.$el.value = undefined;
   };
 
-  // Function to turn camelCase into an appropriate label name
-  const getLabel = (input) => {
-    // Split camelCase string into words
-    const words = input.split(/(?=[A-Z])/);
-
-    // Capitalize each word and join them with a space
-    const result = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-
-    return result;
-  };
 </script>
 
 <style scoped>

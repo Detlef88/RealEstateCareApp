@@ -34,9 +34,10 @@
   
 <script setup>
     import { IonPage, IonContent, IonCard, IonCardHeader, IonTitle, IonCardContent, IonInput, IonButton, toastController } from '@ionic/vue';
-    import { warningOutline, keyOutline } from 'ionicons/icons';
+    import { keyOutline } from 'ionicons/icons';
     import { ref, computed, watch } from 'vue';
     import store from '@/store';
+    import { toastMixin } from '@/mixins/toastMixin.js';
   
     const userAuthCode = ref('');
 
@@ -50,7 +51,7 @@
         const toast = await toastController.create({
             message: message,
             icon: keyOutline,
-            duration: 7000,
+            duration: 6000,
             position: 'top',
             color: 'success',
         });
@@ -65,26 +66,25 @@
         store.dispatch('authenticateUser', enteredAuthCode);
     };
 
+    const { presentErrorToast, presentSuccessToast } = toastMixin.methods;
+
     const error = computed(() => store.state.errors.length > 0);
     const errorMessage = computed(() => store.state.errors);
 
+    const success = computed(() => store.state.successes.length > 0);
+    const successMessage = computed(() => store.state.successes);
+
     watch(error, (hasError) => {
-        if (hasError) {
-            presentErrorToast(errorMessage.value);
-        }
+    if (hasError) {
+        presentErrorToast(errorMessage.value);
+    }
     });
-  
-    const presentErrorToast = async (message) => {
-        const toast = await toastController.create({
-            message: message,
-            icon: warningOutline,
-            duration: 3000,
-            position: 'top',
-            color: 'danger',
-        });
-    
-        await toast.present();
-    };
+
+    watch(success, (hasSuccess) => {
+    if (hasSuccess) {
+        presentSuccessToast(successMessage.value);
+    }
+    });
 </script>
   
 <style scoped>
