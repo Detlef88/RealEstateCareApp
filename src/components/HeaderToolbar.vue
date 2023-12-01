@@ -1,12 +1,39 @@
 <template>
-  <ion-header id="ionHeader">
+  <!-- Page Header -->
+  <ion-header
+    aria-label="Page Header">
     <ion-toolbar>
-      <router-link to="home" slot="start">
-        <ion-icon id="brandLogo" src="/src/assets/brandLogo.svg" />
+      <!-- Home Link -->
+      <router-link
+        to="home"
+        slot="start"
+        aria-label="Home Link">
+        <!-- Brand Logo -->
+        <ion-icon
+          id="brandLogo"
+          src="/src/assets/brandLogo.svg"
+          aria-hidden="true"
+        />
       </router-link>
-      <ion-icon id="brandName" src="/src/assets/brandName.svg" />
-      <ion-button slot="end" @click="logoutUser" color="danger">
-        <ion-icon slot="icon-only" size="large" aria-hidden="true" :icon="logOutOutline" />
+      <!-- Brand Name -->
+      <ion-icon
+        id="brandName"
+        src="/src/assets/brandName.svg"
+        aria-label="Brand Name"
+      />
+      <!-- Logout Button -->
+      <ion-button
+        slot="end"
+        @click="logoutUser"
+        color="danger"
+        aria-label="Logout Button">
+        <!-- Logout Icon -->
+        <ion-icon
+          slot="icon-only"
+          size="large"
+          :icon="logOutOutline"
+          aria-hidden="true"
+        />
       </ion-button>
     </ion-toolbar>
   </ion-header>
@@ -18,6 +45,7 @@
   import store from '@/store';
   import router from '@/router';
 
+  // Function to logout the user
   const logoutUser = async () => {
     store.dispatch('logoutUser');
     // Redirect the user to another page upon successful logout

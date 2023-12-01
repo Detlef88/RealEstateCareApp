@@ -20,9 +20,13 @@ Start the server:
 ### Logging in
 The login information to use the application is provided below. This is a fictitious account and intended for demo purposes.
 
-| Email                 | Wachtwoord   |
-|-----------------------|--------------|
-| admin@rec.nl          | Admin123     |
+Email:
+
+    admin@rec.nl
+
+Password:
+
+    Admin123
 
 During the login process, an authentication code is requested. This is displayed in the toaster component after the 'get code' button is clicked. This simulates a two-factor authentication process that will be used in the final version.
 

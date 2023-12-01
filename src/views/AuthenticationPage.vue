@@ -1,14 +1,20 @@
 <template>
     <ion-page>
-        <ion-content class="ion-padding" :fullscreen="true">
+        <ion-content class="ion-padding" :fullscreen="true" aria-label="Authentication Page">
             <div id="authenticationPage">
-                <ion-card>
-                    <img src="../assets/brandLogoName.svg" alt="Real Estate Care logo and name">
+                <ion-card aria-label="Authentication Card">
+                    <img
+                        src="../assets/brandLogoName.svg"
+                        alt="Real Estate Care logo and name"
+                        aria-label="Real Estate Care logo and name">
                     <ion-card-header>
-                        <ion-title>Authentication</ion-title>
+                        <ion-title
+                            aria-label="Authentication">
+                            Authentication
+                        </ion-title>
                     </ion-card-header>
         
-                    <ion-card-content id="authCard">
+                    <ion-card-content id="authCard" aria-label="Authentication Information">
                         <ion-input
                             label-placement="stacked"
                             label="Authenticate"
@@ -20,10 +26,23 @@
                             mode="md"
                             fill="outline"
                             required="true"
-                        ></ion-input>
+                            aria-label="Authentication Input">
+                        </ion-input>
                         <div id="button-container">
-                            <ion-button slot="start" @click="getAuthCode" size="small">Get code</ion-button>
-                            <ion-button slot="end" @click="authenticateUser" size="small">Authenticate</ion-button>
+                            <ion-button
+                                slot="start"
+                                @click="getAuthCode"
+                                size="small"
+                                aria-label="Get Code Button">
+                                Get code
+                            </ion-button>
+                            <ion-button
+                                slot="end"
+                                @click="authenticateUser"
+                                size="small"
+                                aria-label="Authenticate Button">
+                                Authenticate
+                            </ion-button>
                         </div>
                     </ion-card-content>
                 </ion-card>

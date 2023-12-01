@@ -1,14 +1,14 @@
 <template>
   <ion-page>
-    <ion-content class="ion-padding" :fullscreen="true">
+    <ion-content class="ion-padding" :fullscreen="true" aria-label="Login Page">
       <div id="loginPage">
-        <ion-card>
-          <img src="../assets/brandLogoName.svg" alt="Real Estate Care logo and name">
+        <ion-card aria-label="Login Card">
+          <img src="../assets/brandLogoName.svg" alt="Real Estate Care logo and name" aria-label="Real Estate Care logo and name">
           <ion-card-header>
-            <ion-title>Log in</ion-title>
+            <ion-title aria-label="Login">Log in</ion-title>
           </ion-card-header>
 
-          <ion-card-content id="loginCard">
+          <ion-card-content id="loginCard" aria-label="Login Information">
             <ion-input
               label-placement="stacked"
               label="E-mail"
@@ -20,6 +20,7 @@
               mode="md"
               fill="outline"
               required="true"
+              aria-label="Email Input"
             ></ion-input>
             <ion-input
               label-placement="stacked"
@@ -31,8 +32,9 @@
               mode="md"
               fill="outline"
               required="true"
+              aria-label="Password Input"
             ></ion-input>
-            <ion-button @click="loginUser" expand="block" size="small">Login</ion-button>
+            <ion-button @click="loginUser" expand="block" size="small" aria-label="Login Button">Login</ion-button>
           </ion-card-content>
         </ion-card>
       </div>

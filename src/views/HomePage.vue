@@ -1,14 +1,32 @@
 <template>
-  <ion-page>
-    <ion-content class="ion-padding" :fullscreen="true">
+  <ion-page
+    aria-label="Homepage">
+    <ion-content
+      class="ion-padding"
+      :fullscreen="true">
       <!-- Dashboard section -->
-      <div id="homePage">
-        <div class="container">
+      <div
+        id="homePage">
+        <div
+          class="container"
+          aria-label="Dashboard Card Container">
           <!-- Dashboard card components -->
-          <dashboard-card title="Tasks" icon="clipboardOutline" />
-          <dashboard-card title="Completed" icon="fileTrayFullOutline" />
-          <dashboard-card title="Library" icon="libraryOutline" />
-          <dashboard-card title="Settings" icon="cogOutline" />
+          <dashboard-card
+            title="Tasks"
+            icon="clipboardOutline"
+            aria-label="Tasks Dashboard Card" />
+          <dashboard-card
+            title="Completed"
+            icon="fileTrayFullOutline"
+            aria-label="Completed Dashboard Card" />
+          <dashboard-card
+            title="Library"
+            icon="libraryOutline"
+            aria-label="Library Dashboard Card" />
+          <dashboard-card
+            title="Settings"
+            icon="cogOutline"
+            aria-label="Settings Dashboard Card" />
         </div>
       </div>
     </ion-content>

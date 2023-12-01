@@ -1,30 +1,30 @@
 <template>
   <ion-page>
-    <ion-tabs>
+    <ion-tabs aria-label="Main Tabs">
       <header-toolbar />
       <ion-router-outlet></ion-router-outlet>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home" href="/home">
+      <ion-tab-bar slot="bottom" aria-label="Tab Bar">
+        <ion-tab-button tab="home" href="/home" aria-label="Home Tab">
           <ion-icon aria-hidden="true" :icon="homeOutline" />
           <ion-label>Home</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tasks" href="/tasks">
+        <ion-tab-button tab="tasks" href="/tasks" aria-label="Tasks Tab">
           <ion-icon aria-hidden="true" :icon="clipboardOutline" />
           <ion-label>Tasks</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="completed" href="/completed">
+        <ion-tab-button tab="completed" href="/completed" aria-label="Completed Tab">
           <ion-icon aria-hidden="true" :icon="fileTrayFullOutline" />
           <ion-label>Completed</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="library" href="/library">
+        <ion-tab-button tab="library" href="/library" aria-label="Library Tab">
           <ion-icon aria-hidden="true" :icon="libraryOutline" />
           <ion-label>Library</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="settings" href="/settings">
+        <ion-tab-button tab="settings" href="/settings" aria-label="Settings Tab">
           <ion-icon aria-hidden="true" :icon="cogOutline" />
           <ion-label>Settings</ion-label>
         </ion-tab-button>

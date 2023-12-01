@@ -1,21 +1,39 @@
 <template>
   <!-- Card container that links to a specific route -->
-  <ion-card :routerLink="routePath">
-    <ion-item class="card-item" lines="none">
+  <ion-card
+    :routerLink="routePath"
+    aria-label="Card Container">
+    <ion-item
+      class="card-item"
+      lines="none"
+      aria-label="Card Item">
       <!-- Icon displayed within the card -->
-      <ion-icon size="large" fill="clear" aria-hidden="true" :icon="ionIcons[props.icon]" />
+      <ion-icon
+        size="large"
+        fill="clear"
+        :icon="ionIcons[props.icon]"
+        aria-label="Card Icon"
+      />
       <!-- Badge displayed if the title is 'Tasks' and openReportsCount > 0 -->
-      <ion-badge v-if="props.title === 'Tasks' && openReportsCount > 0" slot="end">{{ openReportsCount }}</ion-badge>
+      <ion-badge
+        v-if="props.title === 'Tasks' && openReportsCount > 0"
+        slot="end"
+        aria-label="Open Reports Badge">
+        {{ openReportsCount }}
+      </ion-badge>
     </ion-item>
-    <ion-card-header>
+    <ion-card-header
+      aria-label="Card Header">
       <!-- Title displayed in the card header -->
-      <ion-card-title>{{ title }}</ion-card-title>
+      <ion-card-title
+        aria-label="Card Title">
+        {{ title }}
+      </ion-card-title>
     </ion-card-header>
   </ion-card>
 </template>
 
 <script setup>
-  // Import necessary Ionic components and libraries
   import { IonCard, IonItem, IonIcon, IonCardHeader, IonCardTitle, IonBadge } from '@ionic/vue';
   import * as ionIcons from 'ionicons/icons';
   import { ref, computed } from 'vue';
