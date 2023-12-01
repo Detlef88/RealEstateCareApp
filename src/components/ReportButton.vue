@@ -1,18 +1,49 @@
 <template>
-    <ion-button @click="openModal(report, reportType)" class="modal-button" expand="block">
-        <template v-if="report.status === 'Open'">
-            <ion-icon :icon="ionIcons[getIcon(reportType)]" aria-hidden="true"></ion-icon>
-            <ion-label>{{ getLabel(reportType) }}</ion-label>
-            <ion-badge slot="end" v-if="report.tasktype === reportType" color="warning">
-                <ion-icon :icon="ionIcons.createOutline" aria-hidden="true"></ion-icon>
+    <ion-button
+        @click="openModal(report, reportType)"
+        class="modal-button"
+        expand="block">
+        <!-- Conditional rendering for open reports -->
+        <template
+            v-if="report.status === 'Open'">
+            <!-- Icon representing the report type -->
+            <ion-icon
+                :icon="ionIcons[getIcon(reportType)]"
+                aria-hidden="true">
+            </ion-icon>
+            <!-- Label representing the report type -->
+            <ion-label
+                aria-label="Report Type">
+                {{ getLabel(reportType) }}
+            </ion-label>
+            <!-- Badge for warning about tasks -->
+            <ion-badge
+                slot="end"
+                v-if="report.tasktype === reportType"
+                color="warning"
+                aria-hidden="true">
+                <ion-icon
+                    :icon="ionIcons.createOutline"
+                    aria-hidden="true">
+                </ion-icon>
             </ion-badge>
         </template>
+        <!-- Conditional rendering for closed reports -->
         <template v-else>
-            <ion-icon :icon="ionIcons.pencilOutline" aria-hidden="true"></ion-icon>
-            <ion-label>Edit report</ion-label>
+            <!-- Edit report icon -->
+            <ion-icon
+                :icon="ionIcons.pencilOutline"
+                aria-hidden="true">
+            </ion-icon>
+            <!-- Label for editing report -->
+            <ion-label 
+                aria-label="Edit report">
+                Edit report
+            </ion-label>
         </template>
     </ion-button>
-</template>
+  </template>
+  
   
 <script setup>
     import { IonButton, IonIcon, IonLabel, IonBadge, modalController } from '@ionic/vue';
@@ -26,6 +57,7 @@
 
     const { getLabel } = labelMixin.methods;
 
+    // References to reactive variables
     const report = ref(null);
     const reportType = ref('');
     let selectedReport = ref(null);

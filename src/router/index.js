@@ -5,6 +5,7 @@ import TabsPage from '@/views/TabsPage.vue'
 import HomePage from '@/views/HomePage.vue'
 import store from '@/store';
 
+// Define routes for navigation
 const routes = [
   {
     path: '/',
@@ -63,17 +64,18 @@ const routes = [
     path: '/authentication',
     name: 'Authentication',
     component: AuthenticationPage,
-    // Guard to prevent authenticated users from accessing the login page
+    // Guard to prevent authenticated users from accessing the authentication page
     meta: { requiresLogin: true }
   },
 ]
 
+// Create the router instance
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 
-// Route guards for authentication
+// Navigation guard to handle route authentication
 router.beforeEach((to, from, next) => {
   const isLoggedIn = store.state.user !== null; // Check if user is logged in
   const isAuthenticated = store.state.authUser === true; // Check if user is authenticated

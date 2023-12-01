@@ -2,24 +2,49 @@
   <ion-header>
     <ion-toolbar>
       <!-- Cancel button -->
-      <div @click="cancel" slot="start" class="button-wrapper">
-        <ion-button color="danger">
-          <ion-icon slot="icon-only" :icon="closeCircleOutline"></ion-icon>
+      <div
+        @click="cancel"
+        slot="start"
+        class="button-wrapper"
+        aria-label="Cancel Button">
+        <ion-button
+          color="danger">
+          <ion-icon
+            slot="icon-only"
+            :icon="closeCircleOutline"
+            aria-hidden="true">
+          </ion-icon>
         </ion-button>
       </div>
-      <ion-title>{{ fileName }}</ion-title>
+      <ion-title
+        aria-label="PDF File Title">
+        {{ fileName }}
+      </ion-title>
       <!-- Confirm button -->
-      <div @click="confirm" slot="end" class="button-wrapper">
-        <ion-button color="success">
-          <ion-icon slot="icon-only" :icon="checkmarkCircleOutline"></ion-icon>
+      <div
+        @click="confirm"
+        slot="end"
+        class="button-wrapper"
+        aria-label="Confirm Button">
+        <ion-button
+          color="success">
+          <ion-icon
+            slot="icon-only"
+            :icon="checkmarkCircleOutline"
+            aria-hidden="true">
+          </ion-icon>
         </ion-button>
       </div>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="ion-padding">
+  <ion-content
+    class="ion-padding">
       <!-- Display the PDF using vue-pdf-embed -->
-      <vue-pdf-embed :source="pdfFile" />
+      <vue-pdf-embed
+        :source="pdfFile"
+        aria-label="PDF file"
+      />
   </ion-content>
 </template>
   
