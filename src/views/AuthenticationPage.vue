@@ -1,8 +1,15 @@
 <template>
     <ion-page>
-        <ion-content class="ion-padding" :fullscreen="true" aria-label="Authentication Page">
-            <div id="authenticationPage">
-                <ion-card aria-label="Authentication Card">
+        <ion-content
+            class="ion-padding"
+            :fullscreen="true"
+            aria-label="Authentication Page">
+            <div
+                id="authenticationPage">
+                <!-- Authentication Card -->
+                <ion-card
+                    aria-label="Authentication Card">
+                    <!-- Real Estate Care logo and name -->
                     <img
                         src="../assets/brandLogoName.svg"
                         alt="Real Estate Care logo and name"
@@ -14,7 +21,10 @@
                         </ion-title>
                     </ion-card-header>
         
-                    <ion-card-content id="authCard" aria-label="Authentication Information">
+                    <ion-card-content
+                        id="authCard"
+                        aria-label="Authentication Information">
+                        <!-- Authentication Input Field -->
                         <ion-input
                             label-placement="stacked"
                             label="Authenticate"
@@ -28,7 +38,9 @@
                             required="true"
                             aria-label="Authentication Input">
                         </ion-input>
-                        <div id="button-container">
+                        <div
+                            id="button-container">
+                            <!-- Get Code Button -->
                             <ion-button
                                 slot="start"
                                 @click="getAuthCode"
@@ -36,6 +48,7 @@
                                 aria-label="Get Code Button">
                                 Get code
                             </ion-button>
+                            <!-- Authenticate Button -->
                             <ion-button
                                 slot="end"
                                 @click="authenticateUser"
@@ -58,14 +71,18 @@
     import store from '@/store';
     import { toastMixin } from '@/mixins/toastMixin.js';
   
+    // Reactive variables
     const userAuthCode = ref('');
 
+    // Computed property to access authCode from store
     const authCode = computed(() => store.state.authCode);
 
+    // Function to get authentication code
     const getAuthCode = () => {
         presentAuthToast(authCode.value);
     };
     
+    // Function to present authentication toast
     const presentAuthToast = async (message) => {
         const toast = await toastController.create({
             message: message,
@@ -78,6 +95,7 @@
         await toast.present();
     };
 
+    // Function to authenticate user
     const authenticateUser = () => {
         // Using unary plus operator to convert to Number
         const enteredAuthCode = +userAuthCode.value;
@@ -85,20 +103,24 @@
         store.dispatch('authenticateUser', enteredAuthCode);
     };
 
+    // Accessing methods from toastMixin
     const { presentErrorToast, presentSuccessToast } = toastMixin.methods;
 
+    // Computed properties to check for error and success states
     const error = computed(() => store.state.errors.length > 0);
     const errorMessage = computed(() => store.state.errors);
 
     const success = computed(() => store.state.successes.length > 0);
     const successMessage = computed(() => store.state.successes);
 
+    // Watch for changes in error state and show error toast
     watch(error, (hasError) => {
     if (hasError) {
         presentErrorToast(errorMessage.value);
     }
     });
 
+    // Watch for changes in success state and show success toast
     watch(success, (hasSuccess) => {
     if (hasSuccess) {
         presentSuccessToast(successMessage.value);

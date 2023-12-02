@@ -1,14 +1,30 @@
 <template>
   <ion-page>
-    <ion-content class="ion-padding" :fullscreen="true" aria-label="Login Page">
-      <div id="loginPage">
-        <ion-card aria-label="Login Card">
-          <img src="../assets/brandLogoName.svg" alt="Real Estate Care logo and name" aria-label="Real Estate Care logo and name">
+    <ion-content
+      class="ion-padding"
+      :fullscreen="true"
+      aria-label="Login Page">
+      <div
+        id="loginPage">
+        <!-- Login Card -->
+        <ion-card
+          aria-label="Login Card">
+          <!-- Real Estate Care logo and name -->
+          <img
+            src="../assets/brandLogoName.svg"
+            alt="Real Estate Care logo and name"
+            aria-label="Real Estate Care logo and name">
           <ion-card-header>
-            <ion-title aria-label="Login">Log in</ion-title>
+            <ion-title
+              aria-label="Login">
+              Log in
+            </ion-title>
           </ion-card-header>
 
-          <ion-card-content id="loginCard" aria-label="Login Information">
+          <ion-card-content
+            id="loginCard"
+            aria-label="Login Information">
+            <!-- Email Input Field -->
             <ion-input
               label-placement="stacked"
               label="E-mail"
@@ -22,6 +38,7 @@
               required="true"
               aria-label="Email Input"
             ></ion-input>
+            <!-- Password Input Field -->
             <ion-input
               label-placement="stacked"
               label="Password"
@@ -34,7 +51,14 @@
               required="true"
               aria-label="Password Input"
             ></ion-input>
-            <ion-button @click="loginUser" expand="block" size="small" aria-label="Login Button">Login</ion-button>
+            <!-- Login Button -->
+            <ion-button
+              @click="loginUser"
+              expand="block"
+              size="small"
+              aria-label="Login Button">
+              Login
+            </ion-button>
           </ion-card-content>
         </ion-card>
       </div>
@@ -48,27 +72,33 @@
   import store from '@/store';
   import { toastMixin } from '@/mixins/toastMixin.js';
 
+  // Reactive variables
   const email = ref('');
   const password = ref('');
 
+  // Function to login user
   const loginUser = () => {
     store.dispatch('loginUser', { email: email.value, password: password.value });
   };
 
+  // Accessing methods from toastMixin
   const { presentErrorToast, presentSuccessToast } = toastMixin.methods;
 
+  // Computed properties to check for error and success states
   const error = computed(() => store.state.errors.length > 0);
   const errorMessage = computed(() => store.state.errors);
 
   const success = computed(() => store.state.successes.length > 0);
   const successMessage = computed(() => store.state.successes);
 
+  // Watch for changes in error state and show error toast
   watch(error, (hasError) => {
   if (hasError) {
       presentErrorToast(errorMessage.value);
   }
   });
 
+  // Watch for changes in success state and show success toast
   watch(success, (hasSuccess) => {
   if (hasSuccess) {
       presentSuccessToast(successMessage.value);

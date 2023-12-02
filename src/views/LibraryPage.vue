@@ -1,8 +1,17 @@
 <template>
   <ion-page>
-    <ion-content class="ion-padding" :fullscreen="true" aria-label="Library Page">
-      <h1 aria-label="Library Heading">Library</h1>
-      <p aria-label="Library Description">Here you'll find all documents relating to the inspections, from standard sheets to test procedures.</p>
+    <ion-content
+      class="ion-padding"
+      :fullscreen="true"
+      aria-label="Library Page">
+      <h1
+        aria-label="Library Heading">
+        Library
+      </h1>
+      <p
+        aria-label="Library Description">
+        Here you'll find all documents relating to the inspections, from standard sheets to test procedures.
+      </p>
       
       <!-- Dynamically create buttons for each PDF file -->
       <ion-button
@@ -11,8 +20,15 @@
         @click="openPdfViewer(pdf, getFileName(pdf))"
         class="pdf-button"
         aria-label="PDF Document Button">
-        <ion-icon slot="start" :icon="documentTextOutline" aria-hidden="true"></ion-icon>
-        <ion-label aria-label="PDF Document Name">{{ getDisplayName(pdf) }}</ion-label>
+        <ion-icon
+          slot="start"
+          :icon="documentTextOutline"
+          aria-hidden="true">
+        </ion-icon>
+        <ion-label
+          aria-label="PDF Document Name">
+          {{ getDisplayName(pdf) }}
+        </ion-label>
       </ion-button>
     </ion-content>
   </ion-page>
