@@ -45,6 +45,7 @@
                                 slot="start"
                                 @click="getAuthCode"
                                 size="small"
+                                color="secondary"
                                 aria-label="Get Code Button">
                                 Get code
                             </ion-button>
@@ -53,6 +54,7 @@
                                 slot="end"
                                 @click="authenticateUser"
                                 size="small"
+                                color="success"
                                 aria-label="Authenticate Button">
                                 Authenticate
                             </ion-button>
@@ -89,7 +91,7 @@
             icon: keyOutline,
             duration: 6000,
             position: 'top',
-            color: 'success',
+            color: 'secondary',
         });
     
         await toast.present();

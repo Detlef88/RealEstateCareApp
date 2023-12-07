@@ -56,6 +56,7 @@
               @click="loginUser"
               expand="block"
               size="small"
+              color="success"
               aria-label="Login Button">
               Login
             </ion-button>
