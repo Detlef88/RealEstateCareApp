@@ -15,7 +15,7 @@ Start the server:
     ionic serve
 
 ### Live version
-[https://.netlify.app](https://.netlify.app)
+[https://real-estate-care-app.netlify.app/](real-estate-care-app.netlify.app)
 
 ### Logging in
 The login information to use the application is provided below. This is a fictitious account and intended for demo purposes.
@@ -79,5 +79,5 @@ Based on the WCAG 2.1 guidelines;
 - It uses PascalCase, camelCase, kebab-case as well as snake_case, depending on the best-practices guides
 - Only scoped styles are used for better overview and easier maintenance and scaling.
 
-### Conclusie
+### Conclusion
 At the moment, all requested functionalities of the case have been incorporated into the application. In a later stage the demo functionalities, such as the notification settings, will be made working.
