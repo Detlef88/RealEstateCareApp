@@ -9,16 +9,16 @@
         slot="start"
         aria-label="Home Link">
         <!-- Brand Logo -->
-        <ion-icon
+        <img
           id="brandLogo"
-          src="/src/assets/brandLogo.svg"
-          aria-hidden="true"
+          src="@/assets/brandLogo.svg"
+          aria-label="Brand Logo"
         />
       </router-link>
       <!-- Brand Name -->
-      <ion-icon
+      <img
         id="brandName"
-        src="/src/assets/brandName.svg"
+        src="@/assets/brandName.svg"
         aria-label="Brand Name"
       />
       <!-- Logout Button -->

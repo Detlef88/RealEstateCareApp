@@ -4,7 +4,7 @@ This is a project for the LOI course front-end frameworks
 ### Installation
 Clone repository:
 
-    git clone <repository-url>
+    git clone https://github.com/Detlef88/RealEstateCareApp.git
 
 Install packages:
 
